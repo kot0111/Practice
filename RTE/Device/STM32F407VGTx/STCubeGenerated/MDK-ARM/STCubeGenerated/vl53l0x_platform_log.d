@@ -1,0 +1,9 @@
+stcubegenerated\vl53l0x_platform_log.o: ..\Drivers\Api\platform\src\vl53l0x_platform_log.c
+stcubegenerated\vl53l0x_platform_log.o: ../Drivers/Api/core/inc/vl53l0x_def.h
+stcubegenerated\vl53l0x_platform_log.o: ../Drivers/Api/core/inc/vl53l0x_device.h
+stcubegenerated\vl53l0x_platform_log.o: ../Drivers/Api/platform/inc/vl53l0x_types.h
+stcubegenerated\vl53l0x_platform_log.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stcubegenerated\vl53l0x_platform_log.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+stcubegenerated\vl53l0x_platform_log.o: ../Drivers/Api/platform/inc/vl53l0x_platform_log.h
+stcubegenerated\vl53l0x_platform_log.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stcubegenerated\vl53l0x_platform_log.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

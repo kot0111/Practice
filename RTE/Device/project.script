@@ -1,0 +1,6 @@
+load STM32F407VGTx 
+project name STCubeGenerated 
+project toolchain "MDK-ARM V5" 
+project path "C:\Users\kozyu\GIT\Practice2\RTE\Device\STM32F407VGTx\" 
+set tpl_path "C:\Users\kozyu\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\MDK\CubeMX" 
+set dest_path "STM32F407VGTx" 
