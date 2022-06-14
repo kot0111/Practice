@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "serialLog",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "serialLog::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-serialLog-Debug-026b77c5517d91c97501.json",
+					"name" : "serialLog",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "serialLog_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-serialLog_autogen-Debug-18dbba8f16b587c3e1c1.json",
+					"name" : "serialLog_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "serialLog_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-serialLog_autogen_timestamp_deps-Debug-0e88384b6aa4e18cd0ca.json",
+					"name" : "serialLog_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug",
+		"source" : "C:/Users/kozyu/GIT/Practice/PC/serialLog"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

@@ -1,0 +1,5 @@
+C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/CMakeFiles/serialLog.dir
+C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/CMakeFiles/serialLog_autogen_timestamp_deps.dir
+C:/Users/kozyu/GIT/Practice/PC/build-serialLog-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/CMakeFiles/serialLog_autogen.dir
