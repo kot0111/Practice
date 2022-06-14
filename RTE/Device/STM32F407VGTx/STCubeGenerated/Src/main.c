@@ -20,8 +20,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+#include "vl53l0x_api.h"
 
 /* USER CODE END Includes */
 
@@ -60,14 +63,15 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+static VL53L0X_Error initSensor( VL53L0X_Dev_t * device );
+
 /* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void) {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -93,17 +97,45 @@ int main(void)
   MX_I2C1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  
+  static VL53L0X_Dev_t device;
+  static VL53L0X_DEV dev = &device;
+  
+  static volatile uint16_t res = 0;
+    
+  device.I2cHandle=&hi2c1;
+  device.I2cDevAddr=0x52;                                                   
+  device.Present=0;
+  device.Id=0; 
+  
+  initSensor(dev);
+  
+  static uint8_t data_ready;      
+  static VL53L0X_RangingMeasurementData_t result;
+  static VL53L0X_Error Status; 
+  
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+    while (1) {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
-  }
+        
+        Status=VL53L0X_GetMeasurementDataReady(&device, &data_ready);
+        
+        if( Status == VL53L0X_ERROR_NONE )
+        {
+            Status = VL53L0X_GetRangingMeasurementData(&device, &result);            
+
+            if (Status == VL53L0X_ERROR_NONE) 
+            {
+                Status = VL53L0X_ClearInterruptMask(&device,0);
+            }
+        }
+        
+    }
   /* USER CODE END 3 */
 }
 
@@ -111,8 +143,7 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
-{
+void SystemClock_Config(void) {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
@@ -131,8 +162,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLN = 84;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
     Error_Handler();
   }
   /** Initializes the CPU, AHB and APB buses clocks
@@ -144,8 +174,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK) {
     Error_Handler();
   }
 }
@@ -155,8 +184,7 @@ void SystemClock_Config(void)
   * @param None
   * @retval None
   */
-static void MX_I2C1_Init(void)
-{
+static void MX_I2C1_Init(void) {
 
   /* USER CODE BEGIN I2C1_Init 0 */
 
@@ -174,8 +202,7 @@ static void MX_I2C1_Init(void)
   hi2c1.Init.OwnAddress2 = 0;
   hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
   hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-  {
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK) {
     Error_Handler();
   }
   /* USER CODE BEGIN I2C1_Init 2 */
@@ -189,8 +216,7 @@ static void MX_I2C1_Init(void)
   * @param None
   * @retval None
   */
-static void MX_USART1_UART_Init(void)
-{
+static void MX_USART1_UART_Init(void) {
 
   /* USER CODE BEGIN USART1_Init 0 */
 
@@ -207,8 +233,7 @@ static void MX_USART1_UART_Init(void)
   huart1.Init.Mode = UART_MODE_TX_RX;
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
+  if (HAL_UART_Init(&huart1) != HAL_OK) {
     Error_Handler();
   }
   /* USER CODE BEGIN USART1_Init 2 */
@@ -222,8 +247,7 @@ static void MX_USART1_UART_Init(void)
   * @param None
   * @retval None
   */
-static void MX_GPIO_Init(void)
-{
+static void MX_GPIO_Init(void) {
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
@@ -234,20 +258,91 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+static VL53L0X_Error initSensor( VL53L0X_Dev_t * device )
+{
+    VL53L0X_Error Status=VL53L0X_ERROR_NONE;    
+
+
+    static uint32_t refSpadCount     = 0;                  //для процесса конфигурации датчиков
+    static uint8_t  isApertureSpads  = 0;                   //для процесса конфигурации датчиков
+    static uint8_t  VhvSettings      = 0;                     //для процесса конфигурации датчиков
+    static uint8_t  PhaseCal         = 0;                     //для процесса конфигурации датчиков
+
+    if (Status == VL53L0X_ERROR_NONE) 
+    {                                                         
+        Status=VL53L0X_SetDeviceAddress( device, 0x51 );
+        device->I2cDevAddr=0x51;    
+    }    
+   
+    if (Status == VL53L0X_ERROR_NONE) 
+    {                                                         
+        Status=VL53L0X_DataInit( device );
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status=VL53L0X_StaticInit( device );	
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status = VL53L0X_PerformRefSpadManagement( device, &refSpadCount, &isApertureSpads);
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status = VL53L0X_PerformRefCalibration( device, &VhvSettings, &PhaseCal);
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status=VL53L0X_SetReferenceSpads( device, refSpadCount, isApertureSpads);
+    }      
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status=VL53L0X_SetRefCalibration( device, VhvSettings, PhaseCal);
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status=VL53L0X_SetDeviceMode( device, VL53L0X_DEVICEMODE_CONTINUOUS_RANGING);	
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status = VL53L0X_SetLimitCheckValue( device, VL53L0X_CHECKENABLE_SIGNAL_RATE_FINAL_RANGE, (FixPoint1616_t)(0.25*65536) );
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status = VL53L0X_SetLimitCheckValue( device, VL53L0X_CHECKENABLE_SIGMA_FINAL_RANGE, (FixPoint1616_t)(32*65536) );
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status =VL53L0X_SetMeasurementTimingBudgetMicroSeconds( device,	20000 );
+    }
+    
+    if (Status == VL53L0X_ERROR_NONE) 
+    {
+        Status=VL53L0X_StartMeasurement( device );
+    }
+    
+    return Status;
+}
+
 /* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
-void Error_Handler(void)
-{
+void Error_Handler(void) {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
-  while (1)
-  {
-      
+  while (1) { 
   }
   /* USER CODE END Error_Handler_Debug */
 }
@@ -260,11 +355,10 @@ void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
-{
+void assert_failed(uint8_t *file, uint32_t line) {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  while (1) { 
+  }
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

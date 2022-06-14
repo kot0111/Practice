@@ -31,3 +31,12 @@ stcubegenerated\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex
 stcubegenerated\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 stcubegenerated\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 stcubegenerated\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+stcubegenerated\main.o: ../Drivers/Api/core/inc/vl53l0x_api.h
+stcubegenerated\main.o: ../Drivers/Api/core/inc/vl53l0x_api_strings.h
+stcubegenerated\main.o: ../Drivers/Api/core/inc/vl53l0x_def.h
+stcubegenerated\main.o: ../Drivers/Api/core/inc/vl53l0x_device.h
+stcubegenerated\main.o: ../Drivers/Api/platform/inc/vl53l0x_types.h
+stcubegenerated\main.o: ../Drivers/Api/platform/inc/vl53l0x_platform.h
+stcubegenerated\main.o: ../Drivers/Api/platform/inc/vl53l0x_platform_log.h
+stcubegenerated\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stcubegenerated\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
