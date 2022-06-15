@@ -1,5 +1,4 @@
-stcubegenerated\stm32f4xx_hal_rcc_ex.o: C:\Users\kozyu\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.16.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
-stcubegenerated\stm32f4xx_hal_rcc_ex.o: .\RTE\_STCubeGenerated\Pre_Include_Global.h
+stcubegenerated\stm32f4xx_hal_rcc_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
 stcubegenerated\stm32f4xx_hal_rcc_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 stcubegenerated\stm32f4xx_hal_rcc_ex.o: ../Inc/stm32f4xx_hal_conf.h
 stcubegenerated\stm32f4xx_hal_rcc_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h

@@ -158,32 +158,42 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Status,0x0A</ItemText>
+          <ItemText>refSpadCount</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>result,0x0A</ItemText>
+          <ItemText>isApertureSpads</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>refSpadCount</ItemText>
+          <ItemText>VhvSettings</ItemText>
         </Ww>
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>isApertureSpads</ItemText>
+          <ItemText>PhaseCal</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>VhvSettings</ItemText>
+          <ItemText>result,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>PhaseCal</ItemText>
+          <ItemText>Status,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>byteData,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>wordData</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -547,7 +557,7 @@
   </Group>
 
   <Group>
-    <GroupName>core</GroupName>
+    <GroupName>VL53L1</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -556,11 +566,11 @@
       <GroupNumber>5</GroupNumber>
       <FileNumber>24</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\core\src\vl53l0x_api.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_api.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -568,11 +578,11 @@
       <GroupNumber>5</GroupNumber>
       <FileNumber>25</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\core\src\vl53l0x_api_calibration.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_api_calibration.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api_calibration.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api_calibration.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -583,8 +593,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\core\src\vl53l0x_api_core.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_api_core.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api_core.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api_core.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -595,8 +605,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\core\src\vl53l0x_api_ranging.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_api_ranging.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api_debug.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api_debug.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -607,40 +617,104 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\core\src\vl53l0x_api_strings.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_api_strings.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api_preset_modes.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api_preset_modes.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>platform</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>5</GroupNumber>
       <FileNumber>29</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\platform\src\vl53l0x_platform.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_platform.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_api_strings.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_api_strings.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
-      <GroupNumber>6</GroupNumber>
+      <GroupNumber>5</GroupNumber>
       <FileNumber>30</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\Api\platform\src\vl53l0x_platform_log.c</PathWithFileName>
-      <FilenameWithoutPath>vl53l0x_platform_log.c</FilenameWithoutPath>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_core.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_core.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>31</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_core_support.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_core_support.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>32</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_error_strings.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_error_strings.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>33</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_register_funcs.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_register_funcs.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>34</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_silicon_core.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_silicon_core.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>35</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_wait.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_wait.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>5</GroupNumber>
+      <FileNumber>36</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\Drivers\vl53l1x\vl53l1_platform.c</PathWithFileName>
+      <FilenameWithoutPath>vl53l1_platform.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

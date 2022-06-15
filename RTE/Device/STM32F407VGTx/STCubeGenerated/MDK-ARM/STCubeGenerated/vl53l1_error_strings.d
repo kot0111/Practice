@@ -1,0 +1,17 @@
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_error_strings.c
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_error_codes.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_types.h
+stcubegenerated\vl53l1_error_strings.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stcubegenerated\vl53l1_error_strings.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+stcubegenerated\vl53l1_error_strings.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stcubegenerated\vl53l1_error_strings.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+stcubegenerated\vl53l1_error_strings.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_error_strings.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_platform_log.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_ll_def.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_ll_device.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_platform_user_config.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_register_structs.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_register_map.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_platform_user_defines.h
+stcubegenerated\vl53l1_error_strings.o: ..\Drivers\vl53l1x\vl53l1_error_exceptions.h
