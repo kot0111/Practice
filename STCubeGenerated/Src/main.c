@@ -122,27 +122,29 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    for (int i = 0; i < 1000; ++i) {
+    while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-        Status = VL53L1_WaitMeasurementDataReady(dev);
-			if(!Status)
-			{
-				Status = VL53L1_GetRangingMeasurementData(dev, &result);
-				Status = VL53L1_ClearInterruptAndStartMeasurement(dev);
+        if (HAL_GPIO_ReadPin(READING_GPIO_Port,READING_Pin)) {
+            for (int i = 0; i < 1000; ++i) {
+                Status = VL53L1_WaitMeasurementDataReady(dev);
+                if(!Status)
                 {
-                    Data[2] = (uint8_t)(result.RangeMilliMeter & 0xFF);
-                    Data[3] = (uint8_t)((result.RangeMilliMeter >> 8) & 0xFF);
-                    Data[4] = (uint8_t)result.RangeStatus;
-                    Data[5] = crc8(Data,5);
-                    HAL_UART_Transmit(&huart2,Data,7,10);
-                }
-			}
+                    Status = VL53L1_GetRangingMeasurementData(dev, &result);
+                    Status = VL53L1_ClearInterruptAndStartMeasurement(dev);
+                    {
+                        Data[2] = (uint8_t)(result.RangeMilliMeter & 0xFF);
+                        Data[3] = (uint8_t)((result.RangeMilliMeter >> 8) & 0xFF);
+                        Data[4] = (uint8_t)result.RangeStatus;
+                        Data[5] = crc8(Data,5);
+                        HAL_UART_Transmit(&huart2,Data,7,10);
+                    }
+                }     
             
-        
-    }
-    while (1);
+            }
+        }
+    }  
   /* USER CODE END 3 */
 }
 
@@ -274,6 +276,12 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SENSOR_PWR_GPIO_Port, SENSOR_PWR_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : READING_Pin */
+  GPIO_InitStruct.Pin = READING_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(READING_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : SENSOR_PWR_Pin */
   GPIO_InitStruct.Pin = SENSOR_PWR_Pin;
