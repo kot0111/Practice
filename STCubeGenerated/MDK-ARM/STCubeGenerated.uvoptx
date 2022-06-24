@@ -188,12 +188,7 @@
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>byteData,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>7</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>wordData</ItemText>
+          <ItemText>Data</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

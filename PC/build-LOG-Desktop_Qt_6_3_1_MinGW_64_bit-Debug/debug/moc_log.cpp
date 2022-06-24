@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_LOG_t {
-    const uint offsetsAndSize[10];
-    char stringdata0[62];
+    const uint offsetsAndSize[14];
+    char stringdata0[108];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_LOG_t, stringdata0) + ofs), len 
@@ -33,11 +33,14 @@ QT_MOC_LITERAL(0, 3), // "LOG"
 QT_MOC_LITERAL(4, 15), // "handleReadyRead"
 QT_MOC_LITERAL(20, 0), // ""
 QT_MOC_LITERAL(21, 21), // "on_btnConnect_clicked"
-QT_MOC_LITERAL(43, 18) // "on_fileBtn_clicked"
+QT_MOC_LITERAL(43, 18), // "on_fileBtn_clicked"
+QT_MOC_LITERAL(62, 24), // "on_btnDisconnect_clicked"
+QT_MOC_LITERAL(87, 20) // "on_btnUpdate_clicked"
 
     },
     "LOG\0handleReadyRead\0\0on_btnConnect_clicked\0"
-    "on_fileBtn_clicked"
+    "on_fileBtn_clicked\0on_btnDisconnect_clicked\0"
+    "on_btnUpdate_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -47,7 +50,7 @@ static const uint qt_meta_data_LOG[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -55,11 +58,15 @@ static const uint qt_meta_data_LOG[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x08,    1 /* Private */,
-       3,    0,   33,    2, 0x08,    2 /* Private */,
-       4,    0,   34,    2, 0x08,    3 /* Private */,
+       1,    0,   44,    2, 0x08,    1 /* Private */,
+       3,    0,   45,    2, 0x08,    2 /* Private */,
+       4,    0,   46,    2, 0x08,    3 /* Private */,
+       5,    0,   47,    2, 0x08,    4 /* Private */,
+       6,    0,   48,    2, 0x08,    5 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -76,6 +83,8 @@ void LOG::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         case 0: _t->handleReadyRead(); break;
         case 1: _t->on_btnConnect_clicked(); break;
         case 2: _t->on_fileBtn_clicked(); break;
+        case 3: _t->on_btnDisconnect_clicked(); break;
+        case 4: _t->on_btnUpdate_clicked(); break;
         default: ;
         }
     }
@@ -90,7 +99,7 @@ const QMetaObject LOG::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_LOG_t
 , QtPrivate::TypeAndForceComplete<LOG, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -117,13 +126,13 @@ int LOG::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

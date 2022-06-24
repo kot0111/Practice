@@ -63,6 +63,7 @@ static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN 0 */
 
 static VL53L1_Error initSensor( VL53L1_Dev_t * device );
+uint8_t crc8(unsigned char*buffer, unsigned char size);
 
 /* USER CODE END 0 */
 
@@ -106,14 +107,13 @@ int main(void)
   device.I2cHandle=&hi2c1;
   device.I2cDevAddr=0x52;
   
-  HAL_GPIO_WritePin(SENSOR_PWR_GPIO_Port,SENSOR_PWR_Pin, 1);
+  HAL_GPIO_WritePin(SENSOR_PWR_GPIO_Port,SENSOR_PWR_Pin,(GPIO_PinState)1);
   
   initSensor(dev);
   
-  uint8_t byteData = 55;
+  uint8_t Data[6] = {0xFF,0xDD,0,0,0,'\n'};
+  //uint8_t Data[6] = {50,51,52,53,54,'\n'};
 
-  
-  static uint8_t data_ready;      
   static VL53L1_RangingMeasurementData_t result;
   static VL53L1_Error Status; 
   
@@ -122,7 +122,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    while (1) {
+    for (int i = 0; i < 1000; ++i) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -131,11 +131,17 @@ int main(void)
 			{
 				Status = VL53L1_GetRangingMeasurementData(dev, &result);
 				Status = VL53L1_ClearInterruptAndStartMeasurement(dev);
-                HAL_UART_Transmit(&huart2,&byteData,1,5);
+                if (result.RangeStatus == 0) {
+                    Data[2] = (uint8_t)(result.RangeMilliMeter & 0xFF);
+                    Data[3] = (uint8_t)((result.RangeMilliMeter >> 8) & 0xFF);
+                    Data[4] = crc8(Data,4);
+                    HAL_UART_Transmit(&huart2,Data,6,10);
+                }
 			}
             
         
     }
+    while (1);
   /* USER CODE END 3 */
 }
 
@@ -293,13 +299,27 @@ static VL53L1_Error initSensor( VL53L1_Dev_t * device ) {
     Status = VL53L1_DataInit(device);
     Status = VL53L1_StaticInit(device);
     Status = VL53L1_PerformRefSpadManagement(device);
-    Status = VL53L1_SetPresetMode(device, VL53L1_PRESETMODE_LITE_RANGING);
-    Status = VL53L1_SetDistanceMode(device, VL53L1_DISTANCEMODE_LONG);
-    Status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(device, 400000);
-    Status = VL53L1_SetInterMeasurementPeriodMilliSeconds(device, 1000);
+    //Status = VL53L1_SetPresetMode(device, VL53L1_PRESETMODE_LITE_RANGING);
+    Status = VL53L1_SetDistanceMode(device, VL53L1_DISTANCEMODE_SHORT);
+    Status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(device, 20000);
+    Status = VL53L1_SetInterMeasurementPeriodMilliSeconds(device, 200);
     Status = VL53L1_StartMeasurement(device);
     
     return Status;
+}
+
+uint8_t crc8(unsigned char*buffer, unsigned char size) {
+    uint8_t crc, i;
+    crc = 0xFF;
+    while (size--) {
+        crc ^= *buffer++;
+        for (i = 0; i < 8; i++) {
+            if (crc & 0x80) crc = (crc << 1) ^ 0x31;
+            else crc <<= 1;
+        }
+    }
+
+    return crc;
 }
 
 /* USER CODE END 4 */
