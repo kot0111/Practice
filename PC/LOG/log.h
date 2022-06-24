@@ -33,6 +33,8 @@ private slots:
 
     void on_btnUpdate_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::LOG *ui;
     QSerialPort serialPort;

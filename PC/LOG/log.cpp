@@ -45,11 +45,12 @@ void LOG::handleReadyRead() {
     auto n = bytes.indexOf('\n');
     temp_data = bytes.split('\n').at(0);
 
-    if (!crc8(temp_data.constData(), 5)) {
+    if (!crc8(temp_data.constData(), 6)) {
         temp_string = prepareToWrite(temp_data.constData(),n);
         ui->txtOutput->append(temp_string);
         unsigned int result = ((uint16_t)temp_data.constData()[2] & 0xFF) + ((uint16_t)temp_data.constData()[3] & 0xFF) * 256;
-        stream << QString::fromStdString(toString(result)) << '\n';
+        stream << QString::fromStdString(toString(result)) <<' ' << QString::fromStdString(toString((uint16_t)temp_data.constData()[4] & 0xFF)) << '\n';
+
     }
 
     bytes.remove(0,n+1);
@@ -141,5 +142,13 @@ void LOG::on_btnUpdate_clicked()
     foreach (const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()) {
         ui->cmbPort->addItem(serialPortInfo.portName());
     }
+}
+
+
+void LOG::on_pushButton_clicked()
+{
+    ui->txtOutput->clear();
+    stream << '\n' << "Эксперимент №__, SigmaMilliMeter = " << '\n';
+    file.flush();
 }
 

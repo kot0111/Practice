@@ -107,11 +107,11 @@ int main(void)
   device.I2cHandle=&hi2c1;
   device.I2cDevAddr=0x52;
   
-  HAL_GPIO_WritePin(SENSOR_PWR_GPIO_Port,SENSOR_PWR_Pin,(GPIO_PinState)1);
+  HAL_GPIO_WritePin(SENSOR_PWR_GPIO_Port,SENSOR_PWR_Pin,GPIO_PIN_SET);
   
   initSensor(dev);
   
-  uint8_t Data[6] = {0xFF,0xDD,0,0,0,'\n'};
+  uint8_t Data[7] = {0xFF,0xDD,0,0,0,0,'\n'};
   //uint8_t Data[6] = {50,51,52,53,54,'\n'};
 
   static VL53L1_RangingMeasurementData_t result;
@@ -131,11 +131,12 @@ int main(void)
 			{
 				Status = VL53L1_GetRangingMeasurementData(dev, &result);
 				Status = VL53L1_ClearInterruptAndStartMeasurement(dev);
-                if (result.RangeStatus == 0) {
+                {
                     Data[2] = (uint8_t)(result.RangeMilliMeter & 0xFF);
                     Data[3] = (uint8_t)((result.RangeMilliMeter >> 8) & 0xFF);
-                    Data[4] = crc8(Data,4);
-                    HAL_UART_Transmit(&huart2,Data,6,10);
+                    Data[4] = (uint8_t)result.RangeStatus;
+                    Data[5] = crc8(Data,5);
+                    HAL_UART_Transmit(&huart2,Data,7,10);
                 }
 			}
             
@@ -296,15 +297,21 @@ static VL53L1_Error initSensor( VL53L1_Dev_t * device ) {
 */
 
     Status = VL53L1_WaitDeviceBooted(device);
+    if (Status) return Status;
     Status = VL53L1_DataInit(device);
+    if (Status) return Status;
     Status = VL53L1_StaticInit(device);
+    if (Status) return Status;
     Status = VL53L1_PerformRefSpadManagement(device);
+    if (Status) return Status;
     //Status = VL53L1_SetPresetMode(device, VL53L1_PRESETMODE_LITE_RANGING);
     Status = VL53L1_SetDistanceMode(device, VL53L1_DISTANCEMODE_SHORT);
+    if (Status) return Status;
     Status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(device, 20000);
+    if (Status) return Status;
     Status = VL53L1_SetInterMeasurementPeriodMilliSeconds(device, 200);
-    Status = VL53L1_StartMeasurement(device);
-    
+    if (Status) return Status;
+    Status = VL53L1_StartMeasurement(device);  
     return Status;
 }
 

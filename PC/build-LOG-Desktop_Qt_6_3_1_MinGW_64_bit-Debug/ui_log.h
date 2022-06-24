@@ -34,15 +34,16 @@ public:
     QLabel *label_2;
     QLineEdit *lineEdit;
     QPushButton *fileBtn;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *btnConnect;
-    QPushButton *btnDisconnect;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
     QComboBox *cmbPort;
     QPushButton *btnUpdate;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *btnConnect;
+    QPushButton *btnDisconnect;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -77,35 +78,18 @@ public:
 
         horizontalLayout_2->addWidget(fileBtn);
 
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(180, 310, 341, 31));
-        horizontalLayout_3 = new QHBoxLayout(widget);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        btnConnect = new QPushButton(widget);
-        btnConnect->setObjectName(QString::fromUtf8("btnConnect"));
-        btnConnect->setMinimumSize(QSize(171, 0));
-
-        horizontalLayout_3->addWidget(btnConnect);
-
-        btnDisconnect = new QPushButton(widget);
-        btnDisconnect->setObjectName(QString::fromUtf8("btnDisconnect"));
-
-        horizontalLayout_3->addWidget(btnDisconnect);
-
-        widget1 = new QWidget(centralwidget);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(91, 40, 521, 31));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(centralwidget);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(91, 40, 521, 31));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget1);
+        label = new QLabel(layoutWidget1);
         label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout->addWidget(label);
 
-        cmbPort = new QComboBox(widget1);
+        cmbPort = new QComboBox(layoutWidget1);
         cmbPort->setObjectName(QString::fromUtf8("cmbPort"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -115,10 +99,37 @@ public:
 
         horizontalLayout->addWidget(cmbPort);
 
-        btnUpdate = new QPushButton(widget1);
+        btnUpdate = new QPushButton(layoutWidget1);
         btnUpdate->setObjectName(QString::fromUtf8("btnUpdate"));
 
         horizontalLayout->addWidget(btnUpdate);
+
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(50, 310, 571, 31));
+        horizontalLayout_3 = new QHBoxLayout(widget);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        btnConnect = new QPushButton(widget);
+        btnConnect->setObjectName(QString::fromUtf8("btnConnect"));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(btnConnect->sizePolicy().hasHeightForWidth());
+        btnConnect->setSizePolicy(sizePolicy1);
+        btnConnect->setMinimumSize(QSize(171, 0));
+
+        horizontalLayout_3->addWidget(btnConnect);
+
+        btnDisconnect = new QPushButton(widget);
+        btnDisconnect->setObjectName(QString::fromUtf8("btnDisconnect"));
+
+        horizontalLayout_3->addWidget(btnDisconnect);
+
+        pushButton = new QPushButton(widget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        horizontalLayout_3->addWidget(pushButton);
 
         LOG->setCentralWidget(centralwidget);
         menubar = new QMenuBar(LOG);
@@ -139,10 +150,11 @@ public:
         LOG->setWindowTitle(QCoreApplication::translate("LOG", "LOG", nullptr));
         label_2->setText(QCoreApplication::translate("LOG", "\320\244\320\260\320\271\320\273", nullptr));
         fileBtn->setText(QCoreApplication::translate("LOG", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
-        btnConnect->setText(QCoreApplication::translate("LOG", "\320\237\320\276\320\264\320\272\320\273\321\216\321\207\320\265\320\275\320\270\320\265", nullptr));
-        btnDisconnect->setText(QCoreApplication::translate("LOG", "\320\236\321\202\320\272\320\273\321\216\321\207\320\265\320\275\320\270\320\265", nullptr));
         label->setText(QCoreApplication::translate("LOG", "\320\237\320\276\321\200\321\202", nullptr));
         btnUpdate->setText(QCoreApplication::translate("LOG", "\320\236\320\261\320\275\320\276\320\262\320\270\321\202\321\214", nullptr));
+        btnConnect->setText(QCoreApplication::translate("LOG", "\320\237\320\276\320\264\320\272\320\273\321\216\321\207\320\265\320\275\320\270\320\265", nullptr));
+        btnDisconnect->setText(QCoreApplication::translate("LOG", "\320\236\321\202\320\272\320\273\321\216\321\207\320\265\320\275\320\270\320\265", nullptr));
+        pushButton->setText(QCoreApplication::translate("LOG", "\320\236\321\207\320\270\321\201\321\202\320\270\321\202\321\214", nullptr));
     } // retranslateUi
 
 };
