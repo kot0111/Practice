@@ -312,12 +312,13 @@ static VL53L1_Error initSensor( VL53L1_Dev_t * device ) {
     if (Status) return Status;
     Status = VL53L1_PerformRefSpadManagement(device);
     if (Status) return Status;
-    //Status = VL53L1_SetPresetMode(device, VL53L1_PRESETMODE_LITE_RANGING);
     Status = VL53L1_SetDistanceMode(device, VL53L1_DISTANCEMODE_SHORT);
+    if (Status) return Status;
+    Status = VL53L1_SetInterMeasurementPeriodMilliSeconds(device, 25);    
     if (Status) return Status;
     Status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(device, 20000);
     if (Status) return Status;
-    Status = VL53L1_SetInterMeasurementPeriodMilliSeconds(device, 200);
+    VL53L1_PerformOffsetSimpleCalibration(device,140);
     if (Status) return Status;
     Status = VL53L1_StartMeasurement(device);  
     return Status;
