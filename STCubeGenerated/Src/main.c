@@ -318,7 +318,14 @@ static VL53L1_Error initSensor( VL53L1_Dev_t * device ) {
     if (Status) return Status;
     Status = VL53L1_SetMeasurementTimingBudgetMicroSeconds(device, 20000);
     if (Status) return Status;
-    VL53L1_PerformOffsetSimpleCalibration(device,140);
+    Status = VL53L1_PerformOffsetSimpleCalibration(device,140);
+    if (Status) return Status;
+    VL53L1_UserRoi_t roiConfig;
+    roiConfig.TopLeftX = 6;
+    roiConfig.TopLeftY = 9;
+    roiConfig.BotRightX = 9;
+    roiConfig.BotRightY = 6;
+    Status = VL53L1_SetUserROI(device, &roiConfig);
     if (Status) return Status;
     Status = VL53L1_StartMeasurement(device);  
     return Status;
